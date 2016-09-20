@@ -21,11 +21,25 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.isIdleTimerDisabled = true
+
         session.addInput(source)
         cameraView.session = session
         session.startRunning()
+
         cameraView.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(zoom(recognizer:))))
+
+        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(reset))
+        swipeGestureRecognizer.direction = .down
+        swipeGestureRecognizer.numberOfTouchesRequired = 2
+        cameraView.addGestureRecognizer(swipeGestureRecognizer)
+
         NotificationCenter.default.addObserver(self, selector: #selector(rotate), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+
+    func reset(){
+        device.configure {
+            device.ramp(toVideoZoomFactor: 1, withRate: 5)
+        }
     }
 
     func rotate() {
