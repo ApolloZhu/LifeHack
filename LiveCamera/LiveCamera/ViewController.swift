@@ -20,6 +20,7 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.isIdleTimerDisabled = true
         session.addInput(source)
         cameraView.session = session
         session.startRunning()
