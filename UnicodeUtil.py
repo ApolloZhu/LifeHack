@@ -11,14 +11,16 @@ def decode(numbers):
     return "".join([chr(int(num)) for num in numbers])
 
 def cmd():
-    """
-    Command Line Entry
-    
-    Options
-        -h: help
-        -e <str>: encode str
-        -d <int...>: decode [int]
-    """
+    help = """
+Unicode Utility by @ApolloZhu
+-----------------------------
+Command Line Help
+
+Options
+    -h: help
+    -e <str>: encode str
+    -d <int...>: decode [int]
+"""
     args = sys.argv[1:]
     error = "Invalid argument. Use `-h` for help"
     if (len(args)>1):
