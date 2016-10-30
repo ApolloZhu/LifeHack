@@ -39,7 +39,7 @@ extension String {
 
 // Python has `'i'*3` that evaluates to "iii", and here is my workaround for that
 func *(lhs: String, rhs: Decimal) -> String {
-    return stride(from: 1, to: rhs, by: 1).reduce(""){ (b, _) in b+lhs }
+    return stride(from: 0, to: rhs, by: 1).reduce(""){ (b, _) in b+lhs }
 }
 print("i"*pow(10,3))
 //: [Next](@next)
